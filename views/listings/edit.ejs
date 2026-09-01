@@ -1,0 +1,40 @@
+<% layout("/layouts/boilerplate")-%>
+<body>
+   
+    <div class="row mt-3">
+        <div class="col-8 offset-2"> 
+           <h2>Edit Listing</h2>
+    <form method="POST" action="/listings/<%=listing._id%>?_method=PUT" novalidate class="needs-validation">
+        <div class="mb-3">
+        <label for="title" class="form-label" >Title</label>
+        <input name="listing[title]" value="<%=listing.title%>" size="50px" class="form-control" required>
+        </div>
+        <div class="mb-3">
+         <label for="description" class="form-label">Description</label>
+         <input name="listing[description]" value="<%=listing.description%>" size="50px"  class="form-control">
+        </div>
+        <div class="mb-3">
+        <label for="image" class="form-label">Image</label>
+        <input name="listing[image][url]" value="<%=listing.image.url%>" placeholder="enter image URL/LINK" class="form-control" required>
+        </div>
+
+        <div class="row">
+        <div class="mb-3 col-md-4">
+        <label for="price" class="form-label">Price</label>
+        <input name="listing[price]" value="<%=listing.price%>" type="number" size="50px" class="form-control" required>
+        </div>
+        <div class="mb-3 col-md-4">
+         <label for="country" class="form-label">Country</label>    
+         <input name="listing[country]" value="<%=listing.country%>" type="text" size="50px" class="form-control" required> 
+        </div>
+        </div>
+
+        <div class="mb-3">
+         <label for="location" class="form-label">Location</label>
+        <input name="listing[location]" value="<%=listing.location%>" type="text" size="50px" class="form-control" required>
+        </div>
+        <button class="btn btn-dark edit-btn mt-3 mb-3">edit</button>
+    </form>
+    </div>
+    </div>
+<script src="/js/script.js"></script>
