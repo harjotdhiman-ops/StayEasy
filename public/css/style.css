@@ -100,13 +100,20 @@ body{
 
 
 /* show page */
-show-img{
-    height: 30vh;
+.show-img{
+    width: 100%;
+    height: clamp(12rem, 30vw, 22rem);
+    object-fit: cover;
+    display: block;
 }
 .btns{
     display: flex;
 }
-show-card{
-    padding-left: 0%;
-    padding-right: 0%;
+.show-card{
+    width: 100%;
+  max-width: 36rem;
+  margin: 0 auto;
+}
+.show-card .card-body {
+  padding: 1rem !important;
 }

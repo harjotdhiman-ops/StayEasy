@@ -1,9 +1,9 @@
 <% layout("/layouts/boilerplate")-%>
 <div class="row">
 <div class="col-8 offset-2">
-    <h3 class="offset-2"><%=listing.title%></h3>
+    <h3 class="offset-3"><%=listing.title%></h3>
 
-   <div class="card col-6 offset-2 "  style="width: 18rem;">
+   <div class="card show-card listing-card mx-auto">
    <img src="<%=listing.image.url%>"
     class="card-img-top show-img"
      alt="listing_image"
@@ -12,15 +12,16 @@
    <p class="card-text">
 
     <br>
-    <%=listing.description%> <br>
-<span>&#8377;</span> <%=listing.price ? listing.price.toLocaleString("en-IN") : "N/A"%>    <%=listing.location%> <br>
-    <%=listing.country%> <br>
+    <%=listing.description%> <br><br>
+<b><span>&#8377;</span> <%=listing.price ? listing.price.toLocaleString("en-IN") : "N/A"%></b> <br><br>   <%=listing.location%>, <br>
+    <b><%=listing.country%></b> <br>
    </p>
    </div>
    </div>
+   <br>
    
    <div class="btns">
-    <a href="/listing/<%=listing._id%>/edit" class="btn btn-dark  offset-3 edit-btn">Edit</a>
+    <a href="/listings/<%=listing._id%>/edit" class="btn btn-dark  offset-3 edit-btn">Edit</a>
    
    
         <form method="POST" action="/listings/<%=listing._id%>?_method=DELETE">
