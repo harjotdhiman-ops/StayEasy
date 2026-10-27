@@ -1,23 +1,35 @@
-const mongoose=require("mongoose");
-const initData=require("./data.js");
-const Listing=require("../models/listing.js");
+const mongoose = require("mongoose");
+const initData = require("./data.js");
+const Listing = require("../models/listing.js");
+const User = require("../models/users.js");
 
-const MONGO_URL="mongodb://127.0.0.1:27017/majorproject";
+const MONGO_URL = "mongodb://127.0.0.1:27017/majorproject";
 
-
-
-async function main(){
+async function initDB() {
     await mongoose.connect(MONGO_URL);
-    console.log("connected to db");
 
-    await Listing.deleteMany({});
-    await Listing.insertMany(initData.data);
+    const owner = await User.findOne().select("_id");
+    if (!owner) {
+        throw new Error("Create a user account before initializing listing data.");
+    }
 
-    console.log("data was initialised");
-};
+    const operations = initData.data.map((listing) => ({
+        updateOne: {
+            filter: { title: listing.title },
+            update: { $set: { ...listing, owner: owner._id } },
+            upsert: true,
+        },
+    }));
 
-main()
-.catch((err)=>{
-    console.log(err);
-});
+    await Listing.bulkWrite(operations);
+    console.log("Listing data initialized with owner references.");
+}
 
+initDB()
+    .catch((err) => {
+        console.error(err);
+        process.exitCode = 1;
+    })
+    .finally(async () => {
+        await mongoose.disconnect();
+    });

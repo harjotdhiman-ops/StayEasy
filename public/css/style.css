@@ -14,6 +14,14 @@ body{
     background-color: white;
 }
 
+.navbar-logo img{
+    display: block;
+    width: 2.5rem;
+    height: 2.5rem;
+    object-fit: contain;
+    margin-right: 1rem;
+}
+
 .fa-compass{
     color:red;
     font-size: 2rem;
@@ -117,3 +125,14 @@ body{
 .show-card .card-body {
   padding: 1rem !important;
 }
+
+/* map */
+#map{
+    height: 400px;
+    width: 100%;
+    min-width: 0;
+    background: #e9ecef;
+    border-radius: 0.5rem;
+}
+
+
